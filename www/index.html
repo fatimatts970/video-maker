@@ -3,89 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1115">
-<title>Video Maker</title>
+<meta name="theme-color" content="#1565ff">
+<title>Cutroom</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main>
-  <h1>🎬 Video Maker</h1>
-  <p class="sub">Images + voiceover se video. Sab kuch aap ke phone par hota hai, internet nahi chahiye.</p>
+<div id="app">
+  <header class="top">
+    <div class="brand"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 8h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8l2.6-4.4 3.4 1.2L5.9 8M10 5.2l3.4 1.2L16.5 2l3.4 1.2L17 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Cutroom</span></div>
+    <div id="chip" class="chip">Khali project</div>
+  </header>
 
-  <section>
-    <h2>1. Images</h2>
-    <label class="btn" for="imgs">Images chunein</label>
-    <input id="imgs" type="file" accept="image/*" multiple hidden>
-    <div class="row">
-      <button id="sortName" class="small" type="button">Naam se sort</button>
-      <button id="clearImgs" class="small" type="button">Sab hatayein</button>
-      <span id="imgCount" class="muted"></span>
+  <main>
+    <!-- ================= HOME ================= -->
+    <section id="tab-home" class="tab home active">
+      <div class="hero">
+        <div class="hero-brand"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 8h18v12H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8l2.6-4.4 3.4 1.2L5.9 8M10 5.2l3.4 1.2L16.5 2l3.4 1.2L17 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Cutroom</span></div>
+        <p class="hero-sub">Images aur awaaz se</p>
+        <h1 class="hero-title">Video banayein<button class="hero-go" data-go="studio" aria-label="Studio kholein"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h1>
+      </div>
+      <div class="bigcards">
+        <button class="bigcard" data-go="studio">
+          <span class="bc-ic"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+          <b>Naya video</b>
+          <small>Images chunein, awaaz lagayein</small>
+        </button>
+        <button class="bigcard" data-go="play">
+          <span class="bc-ic"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+          <b>Meri videos</b>
+          <small>Tayyar video dekhein</small>
+        </button>
+      </div>
+      <div id="recent" class="recent"></div>
+      <div class="toolgrid">
+        <button class="tool" data-go="style:#panel-caption"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11.5h3M8 15h5M14 11.5h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Auto captions</span></button>
+        <button class="tool" data-go="studio:#row-snap"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><circle cx="6" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.6 8.6L20 18M8.6 15.4L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Auto cut</span></button>
+        <button class="tool" data-go="style:#panel-effects"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M5 19L17 7M14 4l1 2 2 1-2 1-1 2-1-2-2-1 2-1zM19 12l.7 1.3L21 14l-1.3.7L19 16l-.7-1.3L17 14l1.3-.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span>Effects</span></button>
+        <button class="tool" data-go="studio:#panel-voice"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM6 11a6 6 0 0 0 12 0M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Voiceover</span></button>
+        <button class="tool" data-go="studio:#panel-music"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span>Music</span></button>
+        <button class="tool" data-go="style:#panel-presets"><span class="t-ic"><svg viewBox="0 0 24 24" width="26" height="26"><rect x="4" y="4" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="4" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="4" y="13" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span>Templates</span></button>
+      </div>
+    </section>
+
+    <!-- ================= STUDIO ================= -->
+    <section id="tab-studio" class="tab">
+      <div class="panel" id="panel-images">
+        <div class="panel-head"><h2>Images</h2><span id="imgCount" class="faint"></span></div>
+        <div id="strip" class="strip">
+          <label class="frame add" for="imgs" aria-label="Images chunein">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <span>Chunein</span>
+          </label>
+        </div>
+        <input id="imgs" type="file" accept="image/*" multiple hidden>
+        <div id="selbar" class="selbar" hidden>
+          <span id="selInfo"></span>
+          <div>
+            <button id="mvL" class="icon" aria-label="Pehle karein">‹</button>
+            <button id="mvR" class="icon" aria-label="Baad mein karein">›</button>
+            <button id="rm" class="icon danger" aria-label="Hatayein">✕</button>
+          </div>
+        </div>
+        <div class="tools">
+          <button id="sortName" class="ghost">Naam se sort</button>
+          <button id="rev" class="ghost">Ulta</button>
+          <button id="shuf" class="ghost">Mix</button>
+          <button id="clearImgs" class="ghost">Sab hatayein</button>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-voice">
+        <div class="panel-head"><h2>Voiceover</h2></div>
+        <label class="pick" for="voice">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM6 11a6 6 0 0 0 12 0M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span id="voiceInfo">Audio file chunein</span>
+        </label>
+        <input id="voice" type="file" accept="audio/*" hidden>
+        <label class="field">Awaaz ka text
+          <textarea id="script" rows="5" placeholder="Voiceover ki script yahan paste karein. Har jumla alag line mein ho to behtar hai. Captions isi se banenge."></textarea>
+        </label>
+        <div class="row"><span>Images ka time awaaz ki lambai se milayein</span><input id="matchVoice" type="checkbox" class="sw" checked></div>
+        <div class="row" id="row-snap"><span>Cut jumlon aur pauses par lagayein</span><input id="snap" type="checkbox" class="sw" checked></div>
+        <p id="fixedWrap" class="field" hidden>
+          <label>Har image kitne second <b id="perImgV">4</b>
+            <input id="perImg" type="range" min="1" max="12" step="0.5" value="4"></label>
+        </p>
+      </div>
+
+      <div class="panel" id="panel-music">
+        <div class="panel-head"><h2>Music</h2></div>
+        <label class="pick" for="music">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span id="musicInfo">Background music chunein (optional)</span>
+        </label>
+        <input id="music" type="file" accept="audio/*" hidden>
+        <label class="field">Music ki awaaz <b id="musicVolV">15</b>%
+          <input id="musicVol" type="range" min="0" max="60" value="15"></label>
+      </div>
+
+      <div class="cta">
+        <button id="go" class="primary"><i class="rec"></i><span>Video banayein</span></button>
+        <p id="summary" class="faint"></p>
+        <p id="err" class="error" hidden></p>
+      </div>
+    </section>
+
+    <!-- ================= STYLE ================= -->
+    <section id="tab-style" class="tab">
+      <div class="panel" id="panel-presets">
+        <div class="panel-head"><h2>Andaaz</h2></div>
+        <div id="presets" class="presets"></div>
+      </div>
+
+      <div class="panel" id="panel-caption">
+        <div class="panel-head"><h2>Captions</h2></div>
+        <div class="previewbox"><canvas id="capPrev" width="640" height="360"></canvas></div>
+        <div class="seggroup"><span>Captions</span>
+          <div class="seg" data-seg="capMode">
+            <button data-v="off">Band</button><button data-v="line">Jumla</button><button data-v="word">Lafz lafz</button>
+          </div></div>
+        <div class="seggroup"><span>Jagah</span>
+          <div class="seg" data-seg="capPos"><button data-v="bottom">Neeche</button><button data-v="center">Beech mein</button></div></div>
+        <label class="field">Font
+          <select id="capFont" data-sel="capFont">
+            <option value="Poppins">Poppins (saaf, mota)</option>
+            <option value="Anton">Anton (bohat mota)</option>
+            <option value="Noto Nastaliq Urdu">Nastaliq (Urdu)</option>
+            <option value="Noto Naskh Arabic">Naskh (Urdu/Arabic)</option>
+          </select></label>
+        <div class="seggroup"><span>Rang</span><div id="swatches" class="swatches"></div></div>
+        <label class="field">Size <b id="capSizeV">7</b>%
+          <input id="capSize" type="range" min="4" max="12" step="0.5" value="7"></label>
+        <div class="row"><span>Latin mein BADE HARF</span><input type="checkbox" class="sw" data-k="upper"></div>
+        <div class="row"><span>Piche kala patta</span><input type="checkbox" class="sw" data-k="box"></div>
+      </div>
+
+      <div class="panel" id="panel-effects">
+        <div class="panel-head"><h2>Effects</h2></div>
+        <div class="seggroup"><span>Camera move (har image par alag, khud)</span>
+          <div class="seg" data-seg="motion"><button data-v="auto">Auto mix</button><button data-v="alt">In/Out</button><button data-v="zoomin">Zoom in</button><button data-v="none">Band</button></div></div>
+        <div class="seggroup"><span>Transition</span>
+          <div class="seg" data-seg="transition"><button data-v="auto">Auto mix</button><button data-v="crossfade">Crossfade</button><button data-v="slide">Slide</button><button data-v="wipe">Wipe</button><button data-v="fade">Fade</button><button data-v="flash">Flash</button><button data-v="cut">Seedha</button></div></div>
+        <div class="seggroup"><span>Rang / look</span>
+          <div class="seg" data-seg="look"><button data-v="none">Asli</button><button data-v="vivid">Vivid</button><button data-v="cine">Cinema</button><button data-v="warm">Garam</button><button data-v="bw">B&amp;W</button></div></div>
+        <div class="row"><div><b>Punch zoom</b><small>Cut par achanak zoom</small></div><input type="checkbox" class="sw" data-k="punch"></div>
+        <div class="row"><div><b>Camera shake</b><small>Cut par halka hilna</small></div><input type="checkbox" class="sw" data-k="shake"></div>
+        <div class="row"><div><b>Vignette</b><small>Kinaron par halka andhera</small></div><input type="checkbox" class="sw" data-k="vignette"></div>
+        <div class="row"><div><b>Film grain</b><small>Purani film jaisi barik dhool</small></div><input type="checkbox" class="sw" data-k="grain"></div>
+        <div class="row"><div><b>Cinema bars</b><small>Upar neeche kali patti</small></div><input type="checkbox" class="sw" data-k="bars"></div>
+        <div class="row"><div><b>Whoosh + hit awaaz</b><small>Cut par sound effect</small></div><input type="checkbox" class="sw" data-k="sfx"></div>
+        <div class="row"><div><b>Awaaz saaf</b><small>Voiceover ki volume barabar</small></div><input type="checkbox" class="sw" data-k="voiceClean"></div>
+        <div class="row"><div><b>Music dabana</b><small>Voiceover ke waqt music khud kam</small></div><input type="checkbox" class="sw" data-k="duck"></div>
+      </div>
+      </div>
+
+      <div class="panel" id="panel-output">
+        <div class="panel-head"><h2>Output</h2></div>
+        <label class="field">Size
+          <select id="size" data-sel="size"></select></label>
+        <div class="seggroup"><span>Frames/sec</span>
+          <div class="seg" data-seg="fps"><button data-v="10">10</button><button data-v="15">15</button><button data-v="24">24</button></div></div>
+        <label class="field">Files
+          <select id="partMin" data-sel="partMin">
+            <option value="0">Ek hi file</option>
+            <option value="3">3 minute ke hisse</option>
+            <option value="5">5 minute ke hisse</option>
+            <option value="10">10 minute ke hisse</option>
+          </select></label>
+      </div>
+    </section>
+
+    <!-- ================= PLAY ================= -->
+    <section id="tab-play" class="tab">
+      <div id="playEmpty" class="empty">
+        <svg viewBox="0 0 24 24" width="44" height="44"><path d="M8 5v14l11-7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <h3>Abhi koi video nahi</h3>
+        <p>Studio mein images chunein aur “Video banayein” dabayein. Tayyar video yahin chalegi.</p>
+      </div>
+      <div id="playBox" hidden>
+        <div class="screen"><video id="player" controls playsinline preload="metadata"></video></div>
+        <div id="partChips" class="chips"></div>
+        <div id="playMeta" class="faint"></div>
+        <div id="playActions" class="actions"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav id="tabs" class="tabs">
+    <button data-tab="home" class="on"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></button>
+    <button data-tab="studio"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 5v14M17 5v14" stroke="currentColor" stroke-width="2"/></svg><span>Studio</span></button>
+    <button data-tab="style"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 7h10M18 7h2M4 17h2M10 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Andaaz</span></button>
+    <button data-tab="play"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9v6l5-3z" fill="currentColor"/></svg><span>Play</span></button>
+  </nav>
+
+  <div id="sheet" class="sheet" hidden>
+    <div class="sheet-in">
+      <div class="recline"><i class="rec pulse"></i><span>Video ban rahi hai</span></div>
+      <div id="pct" class="pct">0%</div>
+      <div class="reel"><div id="reelFill"></div></div>
+      <p id="status" class="status"></p>
+      <p id="eta" class="faint"></p>
+      <p class="faint">Screen on rakhein aur app band na karein.</p>
+      <button id="stop" class="ghost danger-t">Rokein</button>
     </div>
-    <ul id="imgList"></ul>
-  </section>
-
-  <section>
-    <h2>2. Voiceover (optional)</h2>
-    <label class="btn" for="voice">Voiceover audio chunein</label>
-    <input id="voice" type="file" accept="audio/*" hidden>
-    <p id="voiceInfo" class="muted">Koi file nahi chuni.</p>
-    <label class="check"><input id="matchVoice" type="checkbox" checked> Images ka time voiceover ki lambai se khud barabar karein</label>
-  </section>
-
-  <section>
-    <h2>3. Background music (optional)</h2>
-    <label class="btn" for="music">Music chunein</label>
-    <input id="music" type="file" accept="audio/*" hidden>
-    <p id="musicInfo" class="muted">Koi file nahi chuni.</p>
-    <label>Music ki awaaz: <b id="musicVolV">15</b>%
-      <input id="musicVol" type="range" min="0" max="100" value="15"></label>
-  </section>
-
-  <section>
-    <h2>4. Settings</h2>
-    <label>Size
-      <select id="size"></select>
-    </label>
-    <label>Frames per second
-      <select id="fps">
-        <option value="10">10 (sab se tez)</option>
-        <option value="15" selected>15 (mashwara)</option>
-        <option value="24">24 (film jaisi, dheemi)</option>
-      </select>
-    </label>
-    <label class="check"><input id="zoom" type="checkbox" checked> Halka zoom (Ken Burns). Band karein to export tez hoga</label>
-    <label>Fade (second)
-      <input id="fade" type="number" min="0" max="2" step="0.1" value="0.5">
-    </label>
-    <label id="perImgWrap">Har image kitne second
-      <input id="perImg" type="number" min="1" max="60" step="0.5" value="4">
-    </label>
-    <label>Output
-      <select id="partMin">
-        <option value="0">Ek hi file</option>
-        <option value="3">3 minute ke hisse</option>
-        <option value="5" selected>5 minute ke hisse (lambi movie ke liye)</option>
-        <option value="10">10 minute ke hisse</option>
-      </select>
-    </label>
-    <p id="summary" class="muted"></p>
-  </section>
-
-  <section>
-    <button id="go" class="primary" type="button">Video banayein</button>
-    <button id="stop" class="danger" type="button" hidden>Rokein</button>
-    <div id="bar" hidden><div id="barFill"></div></div>
-    <p id="status" class="muted"></p>
-    <p id="err" class="error" hidden></p>
-    <p class="muted">Dhyan: video banate waqt screen on rakhein aur app band na karein.</p>
-  </section>
-
-  <section>
-    <h2>Tayyar videos</h2>
-    <ul id="results"></ul>
-    <details><summary>Technical log</summary><pre id="log"></pre></details>
-  </section>
-</main>
+  </div>
+</div>
 <script type="module" src="app.js"></script>
 </body>
 </html>

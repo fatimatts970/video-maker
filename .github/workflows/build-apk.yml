@@ -23,6 +23,9 @@ jobs:
       - name: Install packages
         run: npm install --no-audit --no-fund
 
+      - name: Fonts (optional)
+        run: npm install --no-save --no-audit --no-fund @fontsource/anton @fontsource/poppins @fontsource/noto-nastaliq-urdu @fontsource/noto-naskh-arabic || echo "fonts skipped"
+
       - name: Copy ffmpeg files into app
         run: node scripts/vendor.mjs
 

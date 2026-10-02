@@ -1,6 +1,6 @@
 {
   "appId": "com.videomaker.app",
-  "appName": "Video Maker",
+  "appName": "Cutroom",
   "webDir": "www",
   "android": {
     "allowMixedContent": false
