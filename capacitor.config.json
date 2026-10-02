@@ -1,0 +1,8 @@
+{
+  "appId": "com.videomaker.app",
+  "appName": "Video Maker",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  }
+}
